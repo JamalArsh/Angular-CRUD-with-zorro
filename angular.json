@@ -27,11 +27,22 @@
             "inlineStyleLanguage": "sass",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
-              "src/styles.sass"
+              "src/theme.less",
+              "src/styles.sass",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["node_modules"]
+            },
+
             "scripts": []
           },
           "configurations": {

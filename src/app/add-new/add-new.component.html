@@ -1,0 +1,178 @@
+<h2>Employee Form</h2>
+
+<form
+  nz-form
+  nzLayout="vertical"
+  [formGroup]="employeeForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label nzFor="firstName">First Name</nz-form-label>
+        <nz-form-control nzErrorTip="First Name cannot be empty">
+          <input
+            placeholder="First Name"
+            nz-input
+            name="firstName"
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label nzFor="firstName">Last Name</nz-form-label>
+        <nz-form-control nzErrorTip="Last Name cannot be empty">
+          <input
+            placeholder="Last Name"
+            nz-input
+            name="lastName"
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label nzFor="email">Email</nz-form-label>
+        <nz-form-control nzErrorTip="Invalid email">
+          <input
+            placeholder="Email"
+            nz-input
+            name="email"
+            type="email"
+            id="email"
+            formControlName="email"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label nzFor="dob">Date of Birth</nz-form-label>
+        <nz-form-control nzErrorTip="Date of birth cannot be empty">
+          <nz-date-picker
+            nzPlaceHolder="Date of Birth"
+            name="dob"
+            id="dob"
+            formControlName="dateOfBirth"
+          ></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="24">
+      <nz-form-item>
+        <nz-form-label nzFor="gender">Gender</nz-form-label>
+        <nz-form-control nzErrorTip="Gender cannot be empty">
+          <nz-radio-group formControlName="gender">
+            <label nz-radio nzValue="male">Male</label>
+            <label nz-radio nzValue="female">Female</label>
+            <label nz-radio nzValue="other">Other</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label nzFor="education">Education</nz-form-label>
+        <nz-form-control nzErrorTip="Education cannot be empty">
+          <nz-select
+            nzShowSearch
+            nzAllowClear
+            nzPlaceHolder="Education"
+            nzSuffixIcon="caret-down"
+            formControlName="education"
+          >
+            <nz-option
+              *ngFor="let education of educationLevel"
+              nzLabel="{{ education }}"
+              nzValue="{{ education }}"
+            ></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label nzFor="company">Company</nz-form-label>
+        <nz-form-control nzErrorTip="Company Name cannot be empty">
+          <input
+            placeholder="Company"
+            nz-input
+            name="company"
+            type="text"
+            id="company"
+            formControlName="company"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label nzFor="Experience">Experience</nz-form-label>
+        <nz-form-control nzErrorTip="First Name cannot be empty">
+          <input
+            placeholder="Experience in years"
+            nz-input
+            name="experiaence"
+            type="number"
+            id="experience"
+            formControlName="experience"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label nzFor="package">Package</nz-form-label>
+        <nz-form-control nzErrorTip="Package cannot be empty">
+          <nz-input-group nzAddOnBefore="LKR">
+            <input
+              placeholder="Package"
+              nz-input
+              name="package"
+              type="number"
+              id="package"
+              formControlName="package"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="12">
+      <button nz-button nzDanger="true" nzType="default" type="reset" nzBlock>
+        Reset
+      </button>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <button
+        nz-button
+        nzType="primary"
+        type="submit"
+        nzBlock
+        (click)="onSubmit()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</form>
