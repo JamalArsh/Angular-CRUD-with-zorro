@@ -1,0 +1,76 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "firstName": "Mohammed",
+      "lastName": "Arshath",
+      "email": "arshath@codelantic.com",
+      "dob": "1997.09.29",
+      "gender": "male",
+      "education": "bachelor",
+      "company": "codelantic",
+      "experience": 6,
+      "package": 1
+    },
+    {
+      "id": 2,
+      "firstName": "Mohammed",
+      "lastName": "Amjath",
+      "email": "amjath@gmail.com",
+      "dob": "1997.09.29",
+      "gender": "male",
+      "education": "bachelor",
+      "company": "codelantic",
+      "experience": 4,
+      "package": 1
+    },
+    {
+      "id": 3,
+      "firstName": "Mohammed",
+      "lastName": "Arshath",
+      "email": "arshath@codelantic.com",
+      "dob": "1997.09.29",
+      "gender": "male",
+      "education": "bachelor",
+      "company": "codelantic",
+      "experience": 10,
+      "package": 1
+    },
+    {
+      "firstName": "krish",
+      "lastName": "kaja",
+      "email": "kaja@gmail.com",
+      "dob": "2024.1.10",
+      "gender": "male",
+      "education": "Intermediate",
+      "company": "code",
+      "experience": 2,
+      "package": 1234,
+      "id": 4
+    },
+    {
+      "firstName": "thom",
+      "lastName": "vath",
+      "email": "vath@gmailcom",
+      "dob": "2024.1.10",
+      "gender": "female",
+      "education": "Post Graduate",
+      "company": "inno",
+      "experience": 4,
+      "package": 50000,
+      "id": 5
+    },
+    {
+      "firstName": "gobi",
+      "lastName": "shan",
+      "email": "gobi@shan",
+      "dob": "2024.1.18",
+      "gender": "other",
+      "education": "Diploma",
+      "company": "senz",
+      "experience": 50,
+      "package": 5000000,
+      "id": 6
+    }
+  ]
+}

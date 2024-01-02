@@ -1,5 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  NgModel,
+  Validators,
+} from '@angular/forms';
+import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-add-new',
@@ -8,6 +17,13 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 })
 export class AddNewComponent implements OnInit {
   employeeForm: any;
+  @ViewChild('emailErrorTip') emailErrorTip!: TemplateRef<{
+    $implicit: FormControl | NgModel;
+  }>;
+
+  @ViewChild('experienceErrorTip') experienceErrorTip!: TemplateRef<{
+    $implicit: FormControl | NgModel;
+  }>;
 
   educationLevel = [
     'Metric',
@@ -17,7 +33,12 @@ export class AddNewComponent implements OnInit {
     'Post Graduate',
   ];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private emplyeeService: EmployeeService,
+    private notification: NzNotificationService,
+    private modelRef: NzModalRef
+  ) {}
 
   ngOnInit() {
     this.employeeForm = this.formBuilder.group({
@@ -36,7 +57,7 @@ export class AddNewComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.min(0),
-          Validators.maxLength(50),
+          Validators.max(50),
         ]),
       ],
       package: [
@@ -46,12 +67,43 @@ export class AddNewComponent implements OnInit {
     });
   }
 
-  // isShow = true;
   onSubmit() {
-    // this.isShow = !this.isShow;
-
     if (this.employeeForm.valid) {
-      console.log('submit', this.employeeForm);
+      let dob = `${this.employeeForm.value['dateOfBirth'].getFullYear()}.${
+        this.employeeForm.value['dateOfBirth'].getMonth() + 1
+      }.${this.employeeForm.value['dateOfBirth'].getDate()}`;
+
+      console.log(dob);
+
+      let transferObj = {
+        firstName: this.employeeForm.value['firstName'],
+        lastName: this.employeeForm.value['lastName'],
+        email: this.employeeForm.value['email'],
+        dob: dob,
+        gender: this.employeeForm.value['gender'],
+        education: this.employeeForm.value['education'],
+        company: this.employeeForm.value['company'],
+        experience: this.employeeForm.value['experience'],
+        package: this.employeeForm.value['package'],
+      };
+
+      this.emplyeeService.addNewEmployee(transferObj).subscribe({
+        next: () => {
+          this.notification.create(
+            'success',
+            'Success',
+            'Employee details successfully added to the database'
+          );
+
+          this.employeeForm.reset();
+          this.modelRef.close();
+        },
+        error: () => {
+          this.notification.create('error', 'Error', 'Error while saving');
+        },
+      });
+
+      console.log(transferObj);
     } else {
       Object.values(this.employeeForm.controls).forEach((control: any) => {
         if (control.invalid) {
