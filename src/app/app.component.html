@@ -20,7 +20,7 @@
         <th nzAlign="center">ID</th>
         <th nzAlign="center">First name</th>
         <th nzAlign="center">Last name</th>
-        <th nzAlign="center">Email</th>
+        <th nzAlign="center" [nzWidth]="'200px'">Email</th>
         <th nzAlign="center">Date of Birth</th>
         <th nzAlign="center">Gender</th>
         <th nzAlign="center">Education</th>
@@ -51,6 +51,10 @@
               nzType="delete"
               nzTheme="outline"
               class="danger"
+              nz-popconfirm
+              nzPopconfirmTitle="Are you sure delete this employee?"
+              nzPopconfirmPlacement="bottom"
+              (nzOnConfirm)="deleteEmployee(data.id)"
             ></span
           ></a>
         </td>

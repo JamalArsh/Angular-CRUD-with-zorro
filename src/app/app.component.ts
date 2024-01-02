@@ -17,6 +17,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getAllEmployees();
+  }
+
+  getAllEmployees() {
     this.employeeService.getAllEmployees().subscribe({
       next: (val) => {
         this.listOfData = val;
@@ -34,11 +38,37 @@ export class AppComponent implements OnInit {
   listOfData: any = [];
 
   addNewEmployee() {
-    this.modalService.create({
-      nzContent: AddNewComponent,
-      nzWidth: '600px',
-      nzFooter: null,
-      nzCentered: true,
+    this.modalService
+      .create({
+        nzContent: AddNewComponent,
+        nzWidth: '600px',
+        nzFooter: null,
+        nzCentered: true,
+      })
+      .afterClose.subscribe({
+        next: () => {
+          this.getAllEmployees();
+        },
+      });
+  }
+
+  deleteEmployee(id: string) {
+    this.employeeService.deleteEmployee(id).subscribe({
+      next: () => {
+        this.notification.create(
+          'info',
+          'Info',
+          'Employee details successfully deleted'
+        );
+        this.getAllEmployees();
+      },
+      error: () => {
+        this.notification.create(
+          'error',
+          'Error',
+          'Error while deleting the data'
+        );
+      },
     });
   }
 }

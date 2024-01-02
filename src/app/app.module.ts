@@ -26,7 +26,7 @@ import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
-
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 registerLocaleData(en);
 
 @NgModule({
@@ -51,6 +51,7 @@ registerLocaleData(en);
     NzSelectModule,
     ReactiveFormsModule,
     NzNotificationModule,
+    NzPopconfirmModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
